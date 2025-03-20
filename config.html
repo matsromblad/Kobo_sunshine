@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Kindle WeatherCN 参数设置</title>
+    <title>Kindle WeatherCN Parameter Settings</title>
     <style>
         h1 {
             text-align: center;
@@ -30,18 +30,18 @@
 </head>
 
 <body>
-    <h1>Kindle WeatherCN 参数设置</h1>
+    <h1>Kindle WeatherCN Parameter Settings</h1>
     <form action="index.html">
         <div>
-            <label>输入城市: <br /><input type="text" name="city" id="city" value="Nanjing" /></label>
+            <label>Enter City: <br /><input type="text" name="city" id="city" value="Nanjing" /></label>
         </div>
-        <div>或者 输入GPS坐标:</div>
+        <div>Or Enter GPS Coordinates:</div>
         <div>
             <label>Lat (e.g. 50.123): <input type="text" name="lat" id="lat" /></label>
             <label>Lon (e.g. 14.4): <input type="text" name="lon" id="lon" /></label>
         </div>
         <div>
-            <label>设置UTC时区<br />
+            <label>Set UTC Timezone<br />
                 <select name="utcOffset" id="utcOffset">
                     <option value="+08:00">+8 h</option>
                     <option value="+01:00">+1 h</option>
@@ -72,46 +72,46 @@
             </label>
         </div>
         <div>
-            <label>设置显示语言: <br />
+            <label>Set Display Language: <br />
                 <select name="lang" id="lang">
-                    <option value="zh_cn">中文</option>
+                    <option value="zh_cn">Chinese</option>
                     <option value="en">English</option>
                 </select>
             </label>
         </div>
         <div>
-            <label>设置屏幕方向: <br />
+            <label>Set Screen Orientation: <br />
                 <select name="rotation" id="rotation">
-                    <option value="none">竖屏显示</option>
-                    <option value="ll">向左横屏</option>
-                    <option value="lr">向右横屏</option>
-                    <option value="up">竖屏倒置</option>
+                    <option value="none">Portrait Display</option>
+                    <option value="ll">Left Landscape</option>
+                    <option value="lr">Right Landscape</option>
+                    <option value="up">Upside Down Portrait</option>
                 </select>
             </label>
         </div>
         <div>
-            <label>设置温度单位: <br />
+            <label>Set Temperature Unit: <br />
                 <select name="units" id="units">
-                    <option value="metric">摄氏度 - °C</option>
-                    <option value="imperial">华氏度 - °F</option>
+                    <option value="metric">Celsius - °C</option>
+                    <option value="imperial">Fahrenheit - °F</option>
                 </select>
             </label>
         </div>
         <div>
-            <label>设置夜间模式: <br />
+            <label>Set Night Mode: <br />
                 <select name="night" id="night">
-                    <option value="off">设置白天模式</option>
-                    <option value="auto">自动切换模式</option>
-                    <option value="on">设置夜间模式</option>
-                    <option value="">default</option>
+                    <option value="off">Set Day Mode</option>
+                    <option value="auto">Auto Switch Mode</option>
+                    <option value="on">Set Night Mode</option>
+                    <option value="">Default</option>
                 </select>
             </label>
         </div>
         <div>
-            <label>设置自定义 APIKey: <br /><input type="text" name="appId" id="appId" /></label>
+            <label>Set Custom APIKey: <br /><input type="text" name="appId" id="appId" /></label>
         </div>
         <div>
-            <input type="submit" value="保存当前设置" />
+            <input type="submit" value="Save Current Settings" />
         </div>
     </form>
 
