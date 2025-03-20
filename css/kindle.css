@@ -245,3 +245,39 @@ html.night {
 .landscape .col {
     width: 19.5%;
 }
+/* Make forecast time (now day) more prominent */
+.colTime {
+    position: relative;
+    font-size: 5rem;
+    margin-top: 2%;
+    font-weight: bold;
+}
+
+/* Adjust temperature display for high/low format */
+.colTemp {
+    position: relative;
+    top: 5%;
+    font-size: 6rem; /* Slightly smaller to fit high/low temps */
+    font-weight: bold;
+}
+
+/* Ensure description has enough space */
+.colDesc {
+    font-size: 3.5rem;
+    position: relative;
+    bottom: -8%;
+    padding: 0 5%;
+}
+
+/* In landscape mode */
+.landscape .colTime {
+    font-size: 4.5rem;
+}
+
+.landscape .colTemp {
+    font-size: 5.5rem;
+}
+
+.landscape .colDesc {
+    font-size: 2.5rem;
+}

@@ -78,11 +78,99 @@
         }
 
         function refreshForecastWeather() {
-            jsonp.request("https://api.openweathermap.org/data/2.5/forecast?" + _apiParams + "&callback=jsonp.response" + "&_timestamp=" + (new Date()).getTime()
-                , function (data) {
-                    processForecastWeather(data);
-                }, "forecast");
+    jsonp.request("https://api.openweathermap.org/data/2.5/forecast?" + _apiParams + "&callback=jsonp.response" + "&_timestamp=" + (new Date()).getTime()
+        , function (data) {
+            processDailyForecast(data);
+        }, "forecast");
+}
+function processDailyForecast(data) {
+    // Group forecasts by day
+    var forecastsByDay = {};
+    var currentDate = momentWithCorrectUtcOffset(new Date()).format("YYYY-MM-DD");
+    
+    // Skip today as we already show current weather
+    var daysToShow = [];
+    
+    // Go through all forecast data
+    for (var i = 0; i < data.list.length; i++) {
+        var forecast = data.list[i];
+        var forecastDate = momentWithCorrectUtcOffset(new Date(forecast.dt * 1000));
+        var dateKey = forecastDate.format("YYYY-MM-DD");
+        
+        // Skip today
+        if (dateKey === currentDate) {
+            continue;
         }
+        
+        // Initialize array for this day if not already done
+        if (!forecastsByDay[dateKey]) {
+            forecastsByDay[dateKey] = [];
+            daysToShow.push(dateKey);
+        }
+        
+        // Add this forecast to the array for this day
+        forecastsByDay[dateKey].push(forecast);
+    }
+    
+    // Limit to forecastCount days
+    daysToShow = daysToShow.slice(0, forecastCount);
+    
+    // Now find the daily high/low temperatures and most frequent weather condition
+    for (var dayIndex = 0; dayIndex < daysToShow.length && dayIndex < forecastCount; dayIndex++) {
+        var dayKey = daysToShow[dayIndex];
+        var dayForecasts = forecastsByDay[dayKey];
+        
+        if (dayForecasts.length === 0) continue;
+        
+        // Find high and low temps for the day
+        var highTemp = -Infinity;
+        var lowTemp = Infinity;
+        
+        // Count weather conditions to find most common
+        var weatherCounts = {};
+        var mostFrequentWeather = null;
+        var mostFrequentCount = 0;
+        
+        for (var j = 0; j < dayForecasts.length; j++) {
+            var f = dayForecasts[j];
+            
+            // Update high/low temps
+            if (f.main.temp > highTemp) highTemp = f.main.temp;
+            if (f.main.temp < lowTemp) lowTemp = f.main.temp;
+            
+            // Count weather conditions
+            var weatherId = f.weather[0].id;
+            if (!weatherCounts[weatherId]) weatherCounts[weatherId] = 0;
+            weatherCounts[weatherId]++;
+            
+            if (weatherCounts[weatherId] > mostFrequentCount) {
+                mostFrequentCount = weatherCounts[weatherId];
+                mostFrequentWeather = f.weather[0];
+            }
+        }
+        
+        // Get a representative date for this day (noon if available)
+        var representativeDate = null;
+        for (var k = 0; k < dayForecasts.length; k++) {
+            var fDate = momentWithCorrectUtcOffset(new Date(dayForecasts[k].dt * 1000));
+            if (fDate.hour() >= 11 && fDate.hour() <= 13) {
+                representativeDate = new Date(dayForecasts[k].dt * 1000);
+                break;
+            }
+        }
+        if (!representativeDate) {
+            representativeDate = new Date(dayForecasts[0].dt * 1000);
+        }
+        
+        // Update the UI
+        var displayDate = momentWithCorrectUtcOffset(representativeDate);
+        
+        forecastsCells[dayIndex].temp.innerHTML = Math.round(highTemp) + "/" + Math.round(lowTemp) + unitsSymbolHtml;
+        forecastsCells[dayIndex].icon.className = getIconClassName(mostFrequentWeather, representativeDate);
+        forecastsCells[dayIndex].desc.innerHTML = mostFrequentWeather.description;
+        forecastsCells[dayIndex].time.innerHTML = displayDate.format("ddd, MMM D"); // Show day name and date
+    }
+}
 
         function refreshData() {
             refreshActualWeather();
