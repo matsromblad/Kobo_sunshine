@@ -53,11 +53,10 @@ html.night {
 }
 
 #temp {
-    font-size: 200px;
-    font-size: 18rem;
+    font-size: 50px;
     display: inline-block;
     font-weight: bolder;
-    text-align: center;
+    text-align: top;
     font-family: electronicFont;
 }
 
@@ -69,14 +68,15 @@ html.night {
 
 #lastUpdate {
     position: relative;
-    top: 20%;
-    left: 0%;
-    font-size: 50px;
-    font-size: 38rem;
+    top: 25%; 
+    left: 35%; 
+    font-size: 200px; 
     font-weight: bolder;
-    text-align: center;
+    text-align: left;
     font-family: electronicFont;
 }
+
+
 
 #description {
     position: absolute;
@@ -193,15 +193,13 @@ html.night {
 }
 
 .landscape #temp {
-    font-size: 141.7px;
-    font-size: 28rem;
+    font-size: 70px;
     font-weight: bolder;
     text-align: center;
 }
 
 .landscape #lastUpdate {
-    font-size: 141.7px;
-    font-size: 24rem;
+    font-size: 25rem;  /* Match landscape city size */
 }
 
 .landscape #description {
