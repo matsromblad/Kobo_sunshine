@@ -197,25 +197,16 @@ function processDailyForecast(data) {
             }
         }
 
-        // Replace the getIconClassName function with this fixed version
+ 
 function getIconClassName(weather, date) {
-    // Check if it's actually night time based on the icon from API
-    var isNight = weather.icon.slice(-1) === "n";
-    
-    // For clear conditions (id 800)
+    // For clear conditions (id 800), always show sun regardless of day/night
     if (weather.id == 800) {
-        if (isNight) {
-            // Night clear -> use moon phase icon
-            var phase = getMoonPhaseFromDate(date);
-            var icon = getMoonIcon(phase);
-            return "wi " + icon;
-        } else {
-            // Day clear -> use sun icon
-            return "wi wi-day-sunny";
-        }
+        return "wi wi-day-sunny";
     }
     
     // For all other weather conditions, use the OpenWeatherMap icon mapping
+    // but still respect day/night distinction
+    var isNight = weather.icon.slice(-1) === "n";
     return "wi wi-owm-" + (isNight ? "night-" : "day-") + weather.id;
 }
 
