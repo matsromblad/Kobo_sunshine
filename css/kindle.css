@@ -99,6 +99,12 @@ html.night {
     top: 3%;
 }
 
+.landscape #iconWrapper {
+    position: absolute;
+    left: 3%;
+    top: 3%;
+}
+
 .forecast {
     position: absolute;
     width: 100%;
