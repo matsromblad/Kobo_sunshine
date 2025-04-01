@@ -298,7 +298,7 @@ function getIconClassName(weather, date) {
 
             setNightMode();
 
-            sun.innerHTML = momentWithCorrectUtcOffset(new Date()).format("第WW周")+ "&nbsp;&nbsp;&nbsp;<i class='wi wi-sunrise'></i>&nbsp;" +  sunrise.format(timeFormat)
+            sun.innerHTML = momentWithCorrectUtcOffset(new Date()).format("WW")+ "&nbsp;&nbsp;&nbsp;<i class='wi wi-sunrise'></i>&nbsp;" +  sunrise.format(timeFormat)
                     + "&nbsp;&nbsp;&nbsp;<i class='wi wi-sunset'></i> " + sunset.format(timeFormat) + "&nbsp;&nbsp;&nbsp;" + momentWithCorrectUtcOffset(new Date()).format("dddd");
 ;
             // sun.innerHTML = "<i class='wi " + getMoonIcon(getCurrentMoonPhase()) + "'></i>&nbsp;&nbsp;<i class='wi wi-sunrise'></i> " + sunrise.format(timeFormat) + "&nbsp;&nbsp;<i class='wi wi-sunset'></i> " + sunset.format(timeFormat);

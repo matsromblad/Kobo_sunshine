@@ -80,12 +80,12 @@ html.night {
 
 #description {
     position: absolute;
-    left: 32%;
+    left: 28%;
     top: 2%;
     font-size: 50px;
     font-size: 7rem;
     font-weight: bolder;
-    text-align: left;
+    text-align: center;
 }
 
 #icon {
@@ -95,14 +95,14 @@ html.night {
 
 #iconWrapper {
     position: absolute;
-    left: 3%;
-    top: 3%;
+    left: 5%;
+    top: 5%;
 }
 
 .landscape #iconWrapper {
     position: absolute;
-    left: 3%;
-    top: 3%;
+    left: 5%;
+    top: 5%;
 }
 
 .forecast {
